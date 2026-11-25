@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>25:00 - 專注 | 番茄鐘</title>
+  <style>
+    :root {
+      --focus-color: #ef4444;
+      --short-color: #10b981;
+      --long-color: #3b82f6;
+      --current-theme: var(--focus-color);
+      --bg: #f3f4f6;
+      --card: #ffffff;
+      --text: #1f2937;
+      --text-muted: #6b7280;
+      --border: #e5e7eb;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 16px;
+      transition: background-color 0.3s ease;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 440px;
+      background: var(--card);
+      border-radius: 24px;
+      padding: 24px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+    }
+
+    /* 模式切換標籤 */
+    .mode-tabs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      background: var(--bg);
+      padding: 5px;
+      border-radius: 12px;
+      margin-bottom: 24px;
+    }
+
+    .mode-btn {
+      border: none;
+      background: transparent;
+      padding: 8px 4px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .mode-btn.active {
+      background: var(--card);
+      color: var(--current-theme);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    /* 狀態與週期指示 */
+    .status-bar {
+      text-align: center;
+      margin-bottom: 8px;
+    }
+
+    .status-badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      background: color-mix(in srgb, var(--current-theme) 12%, transparent);
+      color: var(--current-theme);
+    }
+
+    /* 大字時間顯示 */
+    .timer-display {
+      font-size: clamp(4.5rem, 18vw, 6rem);
+      font-weight: 800;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      margin: 16px 0;
+      color: var(--text);
+    }
+
+    /* 進度條 */
+    .progress-track {
+      width: 100%;
+      height: 6px;
+      background: var(--bg);
+      border-radius: 999px;
+      overflow: hidden;
+      margin-bottom: 24px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 100%;
+      background: var(--current-theme);
+      transition: width 0.3s linear, background-color 0.3s ease;
+    }
+
+    /* 控制按鈕 */
+    .controls {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .btn-primary {
+      background: var(--current-theme);
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 14px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s, background-color 0.3s ease;
+    }
+
+    .btn-primary:active {
+      opacity: 0.85;
+    }
+
+    .btn-secondary {
+      background: var(--bg);
+      color:
